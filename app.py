@@ -71,7 +71,7 @@ def fetch_poster(movie_id):
 # Streamlit UI
 # ----------------------------
 st.title("🎬 Movie Recommendation System")
-st.write("Content-based recommender using **cosine similarity on movie tags**")
+
 
 selected_movie = st.selectbox(
     "Choose a movie",
@@ -92,3 +92,4 @@ if st.button("Recommend"):
             if poster:
                 st.image(poster, use_column_width=True)
             st.caption(row["title"])
+
