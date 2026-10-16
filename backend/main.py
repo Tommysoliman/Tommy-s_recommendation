@@ -22,6 +22,9 @@ from backend.tmdb import TMDBClient
 
 
 logging.basicConfig(level=logging.INFO)
+# httpx logs full request URLs, which include the TMDB api_key query parameter.
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Cineverse Movie Discovery API", version="1.0.0")
