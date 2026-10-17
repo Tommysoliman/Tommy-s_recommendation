@@ -1,4 +1,4 @@
-# Cineverse — AI Movie Discovery
+# Tommy's MovieVerse — AI Movie Discovery
 
 A movie discovery app that pairs the repository's existing CountVectorizer/cosine-similarity model with a FastAPI API, TMDB movie data, an OpenAI tool-calling assistant, and a responsive React interface.
 

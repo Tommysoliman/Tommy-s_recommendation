@@ -205,7 +205,7 @@ export default function App() {
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#home"><span className="brand-mark">C</span><span>CINEVERSE<span className="brand-dot">.</span></span></a>
+        <a className="brand" href="#home"><span className="brand-mark">T</span><span>Tommy's MovieVerse</span></a>
         <nav aria-label="Main navigation">
           <a href="#discover">Discover</a><a href="#classic-ml">The classics</a><a href="#ai-assistant">AI assistant</a>
         </nav>
@@ -308,7 +308,7 @@ export default function App() {
         </section>
       </div>
 
-      <footer><a className="brand" href="#home"><span className="brand-mark">C</span><span>CINEVERSE<span className="brand-dot">.</span></span></a><span>Made for people who love a good story.</span><a href="#home">BACK TO TOP ↑</a></footer>
+      <footer><a className="brand" href="#home"><span className="brand-mark">T</span><span>Tommy's MovieVerse</span></a><span>Made for people who love a good story.</span><a href="#home">BACK TO TOP ↑</a></footer>
 
       {selectedMovie && (
         <div className="modal-backdrop" role="presentation" onClick={() => { detailRequestRef.current += 1; setDetailLoading(false); setSelectedMovie(null); }}>
