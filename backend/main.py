@@ -15,6 +15,7 @@ from backend.models import (
     HealthResponse,
     Movie,
     RecommendationResponse,
+    WhereToWatch,
     movie_from_tmdb,
 )
 from backend.recommendations import MovieRecommender
@@ -131,9 +132,23 @@ async def movie_genres() -> list[dict[str, Any]]:
 
 
 @app.get("/api/movies/{movie_id}", response_model=Movie)
-async def movie_details(movie_id: int = PathParameter(..., ge=1)) -> Movie:
+async def movie_details(
+    movie_id: int = PathParameter(..., ge=1),
+    region: str = Query("US", pattern=r"^[A-Za-z]{2}$"),
+) -> Movie:
     data = await tmdb.details(movie_id)
     movie = movie_from_tmdb(data)
+    country = region.upper()
+    providers = (data.get("watch/providers") or {}).get("results", {}).get(country)
+    if providers:
+        names = lambda key: [p["provider_name"] for p in providers.get(key, []) if p.get("provider_name")]
+        movie.where_to_watch = WhereToWatch(
+            region=country,
+            link=providers.get("link"),
+            stream=names("flatrate"),
+            rent=names("rent"),
+            buy=names("buy"),
+        )
     videos = data.get("videos", {}).get("results", [])
     trailer = next(
         (

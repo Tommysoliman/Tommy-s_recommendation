@@ -96,7 +96,7 @@ class TMDBClient:
         return (data.get("results") or [])[:limit]
 
     async def details(self, movie_id: int) -> dict[str, Any]:
-        return await self._get(f"/movie/{movie_id}", {"append_to_response": "videos"})
+        return await self._get(f"/movie/{movie_id}", {"append_to_response": "videos,watch/providers"})
 
     async def similar(self, movie_id: int, limit: int = 10) -> list[dict[str, Any]]:
         data = await self._get(f"/movie/{movie_id}/similar", {"page": 1})

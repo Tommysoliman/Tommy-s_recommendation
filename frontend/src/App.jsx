@@ -320,6 +320,17 @@ export default function App() {
               {detailError && <p className="inline-error">{detailError}</p>}
               <div className="detail-meta">{yearOf(selectedMovie) && <span>{yearOf(selectedMovie)}</span>}{selectedMovie.rating != null && <span>★ {selectedMovie.rating.toFixed(1)} {selectedMovie.rating_source || ""}</span>}{selectedMovie.genres?.map((genre) => <span key={genre}>{genre}</span>)}</div>
               <p className="detail-overview">{selectedMovie.overview || "A little more mystery to discover."}</p>
+              {!detailLoading && selectedMovie.movie_id && (
+                <div className="where-to-watch">
+                  <strong>Where to watch{selectedMovie.where_to_watch ? ` (${selectedMovie.where_to_watch.region})` : ""}</strong>
+                  {[["stream", "Stream"], ["rent", "Rent"], ["buy", "Buy"]].map(([key, label]) => selectedMovie.where_to_watch?.[key]?.length > 0 && (
+                    <p key={key}><span>{label}</span>{selectedMovie.where_to_watch[key].join(" · ")}</p>
+                  ))}
+                  {!selectedMovie.where_to_watch && <p className="muted">No streaming info available in your region.</p>}
+                  {selectedMovie.where_to_watch?.link && <a className="trailer-link" href={selectedMovie.where_to_watch.link} target="_blank" rel="noreferrer">See all options ↗</a>}
+                  <small>Streaming data by JustWatch via TMDB.</small>
+                </div>
+              )}
               {selectedMovie.trailer_url && <a className="trailer-link" href={selectedMovie.trailer_url} target="_blank" rel="noreferrer">Watch trailer ↗</a>}
               {selectedMovie.rating_source && <small className="detail-source">Rating source: {selectedMovie.rating_source}. TMDB ratings are distinct from IMDb ratings.</small>}
             </div>

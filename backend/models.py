@@ -3,6 +3,14 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class WhereToWatch(BaseModel):
+    region: str
+    link: str | None = None
+    stream: list[str] = Field(default_factory=list)
+    rent: list[str] = Field(default_factory=list)
+    buy: list[str] = Field(default_factory=list)
+
+
 class Movie(BaseModel):
     movie_id: int | None = None
     title: str
@@ -10,6 +18,7 @@ class Movie(BaseModel):
     poster_url: str | None = None
     release_date: str | None = None
     trailer_url: str | None = None
+    where_to_watch: "WhereToWatch | None" = None
     genres: list[str] = Field(default_factory=list)
     rating: float | None = None
     rating_source: str | None = None

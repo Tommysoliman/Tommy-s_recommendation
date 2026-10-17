@@ -25,7 +25,8 @@ async function request(path, options) {
 
 export const getTrending = () => request("/api/movies/trending");
 export const searchMovies = (query) => request(`/api/movies/search?q=${encodeURIComponent(query)}`);
-export const getMovie = (id) => request(`/api/movies/${encodeURIComponent(id)}`);
+const userRegion = () => (navigator.language || "en-US").split("-")[1]?.toUpperCase() || "US";
+export const getMovie = (id) => request(`/api/movies/${encodeURIComponent(id)}?region=${userRegion()}`);
 export const getLocalMovies = (query) => request(`/api/movies/catalog?q=${encodeURIComponent(query)}`);
 export const getRecommendations = (title) =>
   request(`/api/recommendations/${encodeURIComponent(title)}`);
