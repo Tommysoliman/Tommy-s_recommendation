@@ -286,7 +286,7 @@ export default function App() {
               <button className="clear-chat" type="button" title="Start a new conversation" onClick={clearChat}>↻</button>
             </div>
             <div className="chat-messages">
-              {messages.length === 0 && <div className="assistant-message"><span className="message-spark">✳</span><div><p>Hi, I'm your movie scout. Tell me what kind of story you're in the mood for, and I'll find a few real films worth your time.</p><div className="prompt-chips">{["A clever thriller", "Something like Interstellar", "Funny date-night movies"].map((prompt) => <button type="button" key={prompt} onClick={() => setChatInput(prompt)}>{prompt} ↗</button>)}</div></div></div>}
+              {messages.length === 0 && <div className="assistant-message"><span className="message-spark">✳</span><div><p>Hi, Tommy built me to help you. Tell me what kind of story you're in the mood for, and I'll find a few real films worth your time.</p><div className="prompt-chips">{["A clever thriller", "Something like Interstellar", "Funny date-night movies"].map((prompt) => <button type="button" key={prompt} onClick={() => setChatInput(prompt)}>{prompt} ↗</button>)}</div></div></div>}
               {messages.map((message, index) => (
                 <div className={`message ${message.role}`} key={`${message.role}-${index}`}>
                   {message.role === "assistant" && <span className="message-spark">✳</span>}
